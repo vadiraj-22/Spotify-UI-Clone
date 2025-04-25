@@ -1,4 +1,4 @@
-console.log("working");
+console.log("Spotify clone running");
 let songs;
 let currentsong = new Audio();
 let currfolder;
@@ -14,31 +14,37 @@ function secondsToMinutesSeconds(seconds) {
 // Load songs from info.json in the given folder
 async function getsongs(folder) {
     currfolder = folder;
-    let res = await fetch(`/${folder}/info.json`);
-    let data = await res.json();
-    songs = data.songs.map(s => s.file);
+    try {
+        let res = await fetch(`./${folder}/info.json`);
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        let data = await res.json();
+        songs = data.songs.map(s => s.file);
 
-    let songUL = document.querySelector(".songlist ul");
-    songUL.innerHTML = "";
+        let songUL = document.querySelector(".songlist ul");
+        songUL.innerHTML = "";
 
-    for (const song of data.songs) {
-        songUL.innerHTML += `<li onclick="playMusic('${encodeURIComponent(song.file)}')">
-            <img src="/${folder}/cover.jpeg" alt="">
-            <div class="info">
-                <div class="songname">${song.name}</div>
-                <div>${song.author}</div>
-            </div>
-            <div class="playnow">
-                <img class="invert" src="./svgs/play.svg" alt="">
-            </div>
-        </li>`;
+        for (const song of data.songs) {
+            songUL.innerHTML += `<li onclick="playMusic('${encodeURIComponent(song.file)}')">
+                <img src="./${folder}/cover.jpeg" alt="cover">
+                <div class="info">
+                    <div class="songname">${song.name}</div>
+                    <div>${song.author}</div>
+                </div>
+                <div class="playnow">
+                    <img class="invert" src="./svgs/play.svg" alt="play">
+                </div>
+            </li>`;
+        }
+        return songs;
+    } catch (error) {
+        console.error(`Error fetching info.json for ${folder}:`, error);
+        return [];
     }
-    return songs;
 }
 
 // Play a song
 const playMusic = (track, pause = false) => {
-    let songPath = `/${currfolder}/${track}`;
+    let songPath = `./${currfolder}/${track}`;
     currentsong.src = songPath;
 
     if (!pause) {
@@ -51,43 +57,52 @@ const playMusic = (track, pause = false) => {
     console.log("Playing:", songPath);
 }
 
-// Display available albums (manually listed)
+// Display available albums
 async function displayAlbums() {
-    const folders = ["songs/ncs",
-        "songs/cs",
-        "songs/Phonk and Funk"]; // Add more album folders here manually
+    const folders = ["songs/ncs", "songs/cs", "songs/Phonk and Funk"];
     let cardContainer = document.querySelector(".cardContainer");
 
     for (const folder of folders) {
-        let res = await fetch(`/${folder}/info.json`);
-        let data = await res.json();
+        try {
+            let res = await fetch(`./${folder}/info.json`);
+            if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+            let data = await res.json();
 
-        cardContainer.innerHTML += `
-            <div data-folder="${folder}" class="card">
-                <div class="play">
-                    <img src="./svgs/circleplay.svg" alt="">
-                </div>
-                <img src="/${folder}/cover.jpeg" alt="card img">
-                <h2>${data.title}</h2>
-                <p>${data.description}</p>
-            </div>`;
+            cardContainer.innerHTML += `
+                <div data-folder="${folder}" class="card">
+                    <div class="play">
+                        <img src="./svgs/circleplay.svg" alt="play">
+                    </div>
+                    <img src="./${folder}/cover.jpeg" alt="card img">
+                    <h2>${data.title}</h2>
+                    <p>${data.description}</p>
+                </div>`;
+        } catch (error) {
+            console.error(`Error fetching info.json for ${folder}:`, error);
+        }
     }
 
     document.querySelectorAll(".card").forEach(e => {
         e.addEventListener("click", async item => {
             songs = await getsongs(item.currentTarget.dataset.folder);
-            playMusic(songs[0]);
+            if (songs.length > 0) {
+                playMusic(songs[0]);
+            } else {
+                console.warn(`No songs loaded for ${item.currentTarget.dataset.folder}`);
+            }
         });
     });
 }
 
 async function main() {
     // Load default folder
-    await getsongs("songs/ncs");
-    playMusic(songs[0], true);
+    songs = await getsongs("songs/ncs");
+    if (songs.length > 0) {
+        playMusic(songs[0], true);
+    }
 
     // Display albums
-    displayAlbums();
+    await displayAlbums();
 
     // Play/Pause toggle
     play.addEventListener("click", () => {
