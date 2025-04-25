@@ -1,0 +1,36 @@
+{
+  "title": "Phonk and Funk",
+  "description": "Trending Phonk songs",
+  "songs": [
+    {
+      "file": "BRODYAGA FUNK - Eternxlkz.mp3",
+      "name": "BRODYAGA FUNK",
+      "author": "Eternxlkz"
+    },
+    {
+      "file": "CUTE DEPRESSED.mp3",
+      "name": "CUTE DEPRESSED",
+      "author": "Unknown"
+    },
+    {
+      "file": "GLORY.mp3",
+      "name": "GLORY",
+      "author": "Unknown"
+    },
+    {
+      "file": "MASHA ULTRAFUNK.mp3",
+      "name": "MASHA ULTRAFUNK",
+      "author": "Unknown"
+    },
+    {
+      "file": "METAMORPHOSIS.mp3",
+      "name": "METAMORPHOSIS",
+      "author": "Unknown"
+    },
+    {
+      "file": "SLAY!.mp3",
+      "name": "SLAY!",
+      "author": "Unknown"
+    }
+  ]
+}
