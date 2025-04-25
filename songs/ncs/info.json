@@ -1,0 +1,26 @@
+{
+  "title": "No Copyright Songs",
+  "description": "songs for you",
+  "songs": [
+    {
+      "file": "Boogie - Joyful Zachz Winner.mp3",
+      "name": "Boogie",
+      "author": "Joyful Zachz Winner"
+    },
+    {
+      "file": "Mortals - Warriyo, Laura Brehm.mp3",
+      "name": "Mortals",
+      "author": "Warriyo, Laura Brehm"
+    },
+    {
+      "file": "Mortals Funk Remix - Warriyo, LXNGVX.mp3",
+      "name": "Mortals Funk Remix",
+      "author": "Warriyo, LXNGVX"
+    },
+    {
+      "file": "Royalty - Maestro Chives, Egzod, Neoni.mp3",
+      "name": "Royalty",
+      "author": "Maestro Chives, Egzod, Neoni"
+    }
+  ]
+}
