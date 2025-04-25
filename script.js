@@ -3,9 +3,6 @@ let songs;
 let currentsong = new Audio();
 let currfolder;
 
-// Base path for GitHub Pages (adjust 'spotify-clone' to your repository name)
-const basePath = window.location.hostname.includes('github.io') ? '/spotify-clone' : '';
-
 // Convert seconds to MM:SS format
 function secondsToMinutesSeconds(seconds) {
     if (isNaN(seconds) || seconds < 0) return "00:00";
@@ -18,7 +15,7 @@ function secondsToMinutesSeconds(seconds) {
 async function getsongs(folder) {
     currfolder = folder;
     try {
-        let res = await fetch(`${basePath}/${folder}/info.json`);
+        let res = await fetch(`./${folder}/info.json`);
         if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
         let data = await res.json();
         songs = data.songs.map(s => s.file);
@@ -28,7 +25,7 @@ async function getsongs(folder) {
 
         for (const song of data.songs) {
             songUL.innerHTML += `<li onclick="playMusic('${encodeURIComponent(song.file)}')">
-                <img src="${basePath}/${folder}/cover.jpeg" alt="cover">
+                <img src="./${folder}/cover.jpeg" alt="cover">
                 <div class="info">
                     <div class="songname">${song.name}</div>
                     <div>${song.author}</div>
@@ -47,7 +44,7 @@ async function getsongs(folder) {
 
 // Play a song
 const playMusic = (track, pause = false) => {
-    let songPath = `${basePath}/${currfolder}/${track}`;
+    let songPath = `./${currfolder}/${track}`;
     currentsong.src = songPath;
 
     if (!pause) {
@@ -67,7 +64,7 @@ async function displayAlbums() {
 
     for (const folder of folders) {
         try {
-            let res = await fetch(`${basePath}/${folder}/info.json`);
+            let res = await fetch(`./${folder}/info.json`);
             if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
             let data = await res.json();
 
@@ -76,7 +73,7 @@ async function displayAlbums() {
                     <div class="play">
                         <img src="./svgs/circleplay.svg" alt="play">
                     </div>
-                    <img src="${basePath}/${folder}/cover.jpeg" alt="card img">
+                    <img src="./${folder}/cover.jpeg" alt="card img">
                     <h2>${data.title}</h2>
                     <p>${data.description}</p>
                 </div>`;
