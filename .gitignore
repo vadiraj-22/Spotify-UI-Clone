@@ -1,0 +1,16 @@
+# Node.js
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+
+# Temporary files
+*.log
+*.tmp
+
+# Allow songs and assets
+!songs/**/*.json
+!songs/**/*.jpeg
+!songs/**/*.mp3
