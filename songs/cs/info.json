@@ -1,0 +1,31 @@
+{
+  "title": "Copyright Songs",
+  "description": "songs for you",
+  "songs": [
+    {
+      "file": "Carol Of The Bells Lindsey - Stirling.mp3",
+      "name": "Carol Of The Bells Lindsey",
+      "author": "Stirling"
+    },
+    {
+      "file": "Cheri Cheri Lady New-Version - Modern Talking.mp3",
+      "name": "Cheri Cheri Lady New-Version",
+      "author": "Modern Talking"
+    },
+    {
+      "file": "Cradles - Besomorph.mp3",
+      "name": "Cradles",
+      "author": "Besomorph"
+    },
+    {
+      "file": "Faded - Ooyy.mp3",
+      "name": "Faded",
+      "author": "Ooyy"
+    },
+    {
+      "file": "Fluxxwave  Lay  With Me SpedUp - Anti Clovis Reyes.mp3",
+      "name": "Fluxxwave  Lay  With Me SpedUp",
+      "author": "Anti Clovis Reyes"
+    }
+  ]
+}
