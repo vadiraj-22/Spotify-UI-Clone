@@ -184,8 +184,8 @@ body {
     padding: 10px 20px;
     color: black;
     background-color: white;
-    text-decoration: none; /* Removes underline */
-    display: inline-block; /* Ensures button-like behavior */
+    text-decoration: none; 
+    display: inline-block; 
 }
 
 .loginbtn:hover {
@@ -344,7 +344,7 @@ body {
         position: absolute;
         left: -120%;
         z-index: 1;
-        width: 350px;
+        width: 330px;
         background-color: black;
         transition: left 0.5s;
     }
@@ -356,7 +356,7 @@ body {
     }
     .cardContainer{
         margin: 0;
-        max-height: 60vh;
+        max-height: 55vh;
     }
     .card{
         width: 30vw;
