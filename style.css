@@ -344,7 +344,7 @@ body {
         position: absolute;
         left: -120%;
         z-index: 1;
-        width: 370px;
+        width: 350px;
         background-color: black;
         transition: left 0.5s;
     }
